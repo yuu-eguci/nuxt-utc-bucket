@@ -78,6 +78,18 @@
 
 <script>
 export default {
-  name: 'IndexPage'
+  name: 'IndexPage',
+  created () {
+    this.$i18n.setLocale('en')
+    setTimeout(() => {
+      console.log(this.$t('indexPage.theCanvas.theHandwriting'))
+      setTimeout(() => {
+        this.$i18n.setLocale('ja')
+        setTimeout(() => {
+          console.log(this.$t('indexPage.theCanvas.theHandwriting'))
+        }, 1000)
+      }, 1000)
+    }, 1000)
+  }
 }
 </script>
