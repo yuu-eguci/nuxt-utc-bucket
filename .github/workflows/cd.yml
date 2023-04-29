@@ -1,21 +1,23 @@
-name: ci
+name: cd
 
 on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
+
+  workflow_dispatch:
 
 jobs:
-  ci:
-    runs-on: ${{ matrix.os }}
+  cd:
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
         os: [ubuntu-latest]
         node: [lts/*]
+
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout 🛎
@@ -43,8 +45,11 @@ jobs:
       - name: Install dependencies 👨🏻‍💻
         run: yarn
 
-      - name: Run linter 👀
-        run: yarn lint
+      - name: Run generate 👷
+        run: yarn generate-for-github-pages
 
-      - name: Run tests 🧪
-        run: yarn test
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          # NOTE: カスタムドメインが導入されることがあればここに cname が設定されます。
