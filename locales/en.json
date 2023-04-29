@@ -1,5 +1,7 @@
 {
   "indexPage": {
+    "description": "If UTC is typed, it is set to JST; if JST is typed, it is set to UTC. For now, hit tab to activate the form.",
+    "copied": "Copied!",
     "theCanvas": {
       "theHandwriting": "Handwriting",
       "draw": "Draw",
