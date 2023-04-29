@@ -11,9 +11,6 @@
       >
         mdi-pail-outline
       </v-icon>
-      <v-toolbar-title>
-        Nuxt UTC Bucket
-      </v-toolbar-title>
     </v-app-bar>
     <v-main>
       <v-container>

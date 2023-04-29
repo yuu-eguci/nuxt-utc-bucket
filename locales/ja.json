@@ -1,5 +1,7 @@
 {
   "indexPage": {
+    "description": "UTC を打てば JST にするし、 JST を打てば UTC にする。とりあえず tab を打って、フォームをアクティブにしろ。",
+    "copied": "コピーしたよ",
     "theCanvas": {
       "theHandwriting": "手書き",
       "draw": "書く",
