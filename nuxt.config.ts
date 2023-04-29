@@ -10,7 +10,10 @@ require('dotenv').config({
 const nuxtConfig: NuxtConfig = {
   router: {
     // (dotenv)
-    base: process.env.ROUTER_BASE
+    base: process.env.ROUTER_BASE,
+    // nuxt.config.js に書いた middleware はすべての page 用。
+    // WARN: ここは middlewares じゃダメ。 middleware.
+    middleware: ['access-logging']
   },
 
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
@@ -44,6 +47,7 @@ const nuxtConfig: NuxtConfig = {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    { src: '@/plugins/debugLog.ts', mode: 'client' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
