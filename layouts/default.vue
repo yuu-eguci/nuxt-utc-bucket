@@ -21,7 +21,17 @@
       :absolute="false"
       app
     >
-      <span>&copy; {{ new Date().getFullYear() }} yuu-eguci</span>
+      <span>
+        &copy; {{ new Date().getFullYear() }}
+      </span>
+      <v-spacer />
+      <a href="https://github.com/yuu-eguci/nuxt-utc-bucket">
+        <v-icon
+          large
+        >
+          mdi-github
+        </v-icon>
+      </a>
     </v-footer>
   </v-app>
 </template>
