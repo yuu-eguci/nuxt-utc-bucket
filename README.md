@@ -1,5 +1,7 @@
 # nuxt-utc-bucket
 
+✌🏽✌🏽 In this repository, I tried to study Nuxt.js 2 + TypeScript + Object Style + Vuetify + GitHub Pages
+
 ## Build Setup
 
 ```bash
