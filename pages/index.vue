@@ -71,13 +71,13 @@
 </template>
 
 <script lang="ts">
+import Vue from 'vue'
 import * as dayjs from 'dayjs'
-import * as utc from 'dayjs/plugin/utc'
-import * as timezone from 'dayjs/plugin/timezone'
+import utc from 'dayjs/plugin/utc'
+import timezone from 'dayjs/plugin/timezone'
+
 dayjs.extend(utc)
 dayjs.extend(timezone)
-
-import Vue, { CreateElement, VNode } from 'vue'
 
 export default Vue.extend({
   name: 'IndexPage',
@@ -85,10 +85,7 @@ export default Vue.extend({
     return {
       innerUtcInput: '',
       utcConverted: '',
-      utcConvertedCopied: false,
-      jstInput: '',
-      jstConverted: '2023-04-30T00:00:00+09:00',
-      jstConvertedCopied: false
+      utcConvertedCopied: false
     }
   },
   computed: {
@@ -96,12 +93,12 @@ export default Vue.extend({
       get () {
         return this.innerUtcInput
       },
-      set (value) {
+      set (value: string) {
         this.innerUtcInput = value
         try {
-          this.utcConverted = dayjs.tz(value, 'utc').tz('Asia/Tokyo').format()
-        } catch (err) {
-          this.utcConverted = err.message
+          this.utcConverted = (dayjs as any).tz(value, 'utc').tz('Asia/Tokyo').format()
+        } catch (err: unknown) {
+          this.utcConverted = (err as any).message
         }
       }
     }
