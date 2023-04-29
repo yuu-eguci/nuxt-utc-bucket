@@ -16,6 +16,9 @@ jobs:
         os: [ubuntu-latest]
         node: [lts/*]
 
+    permissions:
+      contents: write
+
     steps:
       - name: Checkout 🛎
         uses: actions/checkout@master
@@ -47,6 +50,6 @@ jobs:
 
       - uses: peaceiris/actions-gh-pages@v3
         with:
-          personal_token: ${{ secrets.PERSONAL_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           # NOTE: カスタムドメインが導入されることがあればここに cname が設定されます。
