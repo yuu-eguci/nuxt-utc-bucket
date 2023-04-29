@@ -49,6 +49,12 @@
           </p>
         </v-card-text>
         <v-card-actions>
+          <v-btn
+            color="secondary"
+            @click="showBucket"
+          >
+            {{ $t('indexPage.showBucket') }}
+          </v-btn>
           <v-spacer />
           <v-btn
             color="secondary"
@@ -67,6 +73,19 @@
         </v-card-actions>
       </v-card>
     </v-col>
+    <v-overlay
+      opacity="0.5"
+      color="grey"
+      :absolute="true"
+      :value="showOverlay"
+    >
+      <v-icon v-if="animation" class="rotate-animation" size="56">
+        mdi-bucket-outline
+      </v-icon>
+      <v-icon v-else size="56">
+        mdi-pail-outline
+      </v-icon>
+    </v-overlay>
   </v-row>
 </template>
 
@@ -85,7 +104,9 @@ export default Vue.extend({
     return {
       innerUtcInput: '',
       utcConverted: '',
-      utcConvertedCopied: false
+      utcConvertedCopied: false,
+      showOverlay: false,
+      animation: false
     }
   },
   computed: {
@@ -103,7 +124,23 @@ export default Vue.extend({
       }
     }
   },
+  mounted () {
+    this.showBucket()
+  },
   methods: {
+    showBucket () {
+      // overlay 開始; anime も開始
+      this.showOverlay = true
+      this.animation = true
+      setTimeout(() => {
+        // 1秒後に anime 終了
+        this.animation = false
+        setTimeout(() => {
+          // 1秒後に overlay 終了
+          this.showOverlay = false
+        }, 1000)
+      }, 1000)
+    },
     async copyUtcConverted () {
       try {
         this.$debug(`Copy text: ${this.utcConverted}`)
@@ -119,3 +156,18 @@ export default Vue.extend({
   }
 })
 </script>
+
+<style>
+.rotate-animation {
+  animation: rotation 1s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+</style>
