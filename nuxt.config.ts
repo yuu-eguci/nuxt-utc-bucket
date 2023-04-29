@@ -1,7 +1,18 @@
 import { NuxtConfig } from '@nuxt/types'
 import colors from 'vuetify/es5/util/colors'
 
+// (dotenv) .env の内容を本ファイルで利用するための設定です。
+const envFilename = `.${process.env.ENV}.env`
+require('dotenv').config({
+  path: envFilename
+})
+
 const nuxtConfig: NuxtConfig = {
+  router: {
+    // (dotenv)
+    base: process.env.ROUTER_BASE
+  },
+
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
 
@@ -22,7 +33,8 @@ const nuxtConfig: NuxtConfig = {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      // (dotenv)
+      { rel: 'icon', type: 'image/x-icon', href: `${process.env.ROUTER_BASE}favicon.ico` }
     ]
   },
 
@@ -48,7 +60,15 @@ const nuxtConfig: NuxtConfig = {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    // (dotenv)
+    [
+      '@nuxtjs/dotenv',
+      {
+        // 起動時に `ENV=test nuxt` というように指定することで、使用する .xxx.env を切り替えています。
+        filename: envFilename
+      }
+    ]
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
