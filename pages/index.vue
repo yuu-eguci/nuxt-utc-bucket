@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
+    <v-col cols="12" md="8">
       <main-component
         :from-tz="'UTC'"
         :to-tz="'Asia/Tokyo'"
@@ -10,7 +10,9 @@
         :from-tz="'Asia/Tokyo'"
         :to-tz="'UTC'"
       />
+    </v-col>
 
+    <v-col cols="12" md="4">
       <the-description
         :show-bucket-function="showBucket"
       />

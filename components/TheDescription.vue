@@ -11,12 +11,6 @@
       </p>
     </v-card-text>
     <v-card-actions>
-      <v-btn
-        color="secondary"
-        @click="showBucketFunction"
-      >
-        {{ $t('indexPage.showBucket') }}
-      </v-btn>
       <v-spacer />
       <v-btn
         color="secondary"
@@ -31,6 +25,20 @@
         @click="$i18n.setLocale('ja')"
       >
         日本語でおｋ
+      </v-btn>
+    </v-card-actions>
+    <v-card-actions>
+      <v-spacer />
+      <v-btn
+        color="secondary"
+        @click="showBucketFunction"
+      >
+        <v-icon
+          class="mr-2"
+        >
+          mdi-pail-outline
+        </v-icon>
+        {{ $t('indexPage.showBucket') }}
       </v-btn>
     </v-card-actions>
   </v-card>
