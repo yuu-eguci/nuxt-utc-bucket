@@ -17,7 +17,10 @@ dayjs.extend(timezone)
  */
 export function convertDatetime (value: string, fromTz: string, toTz: string): string {
   try {
-    return (dayjs as any).tz(value, fromTz).tz(toTz).format()
+    // value を UTC として解釈し、fromTz のタイムゾーンに変換
+    const datetime = (dayjs as any).utc(value).tz(fromTz)
+    // toTz への変換
+    return datetime.tz(toTz).format()
   } catch (err: unknown) {
     return (err as any).message
   }
