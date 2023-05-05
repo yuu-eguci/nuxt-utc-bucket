@@ -1,5 +1,5 @@
 <template>
-  <v-row justify="center" align="center">
+  <v-row align="start">
     <v-col cols="12" md="8">
       <v-tabs
         v-model="activeTab"
