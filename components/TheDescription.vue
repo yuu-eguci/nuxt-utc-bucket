@@ -6,9 +6,10 @@
       Nuxt UTC Bucket
     </v-card-title>
     <v-card-text>
-      <p>
-        {{ $t('indexPage.description') }}
-      </p>
+      {{ $t('indexPage.description') }}
+    </v-card-text>
+    <v-card-text>
+      {{ $t('indexPage.descriptionMultiple') }}
     </v-card-text>
     <v-card-actions>
       <v-spacer />

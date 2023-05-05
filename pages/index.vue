@@ -1,15 +1,43 @@
 <template>
-  <v-row justify="center" align="center">
+  <v-row align="start">
     <v-col cols="12" md="8">
-      <main-component
-        :from-tz="'UTC'"
-        :to-tz="'Asia/Tokyo'"
-      />
+      <v-tabs
+        v-model="activeTab"
+        fixed-tabs
+        dark
+      >
+        <v-tab>
+          {{ $t('indexPage.tabNameSingle') }}
+        </v-tab>
+        <v-tab>
+          {{ $t('indexPage.tabNameMultiple') }}
+        </v-tab>
+      </v-tabs>
+      <v-tabs-items v-model="activeTab">
+        <v-tab-item>
+          <!-- XXX: ここに padding を設ける方法がよくわからない。 -->
+          <single-line-component
+            :from-tz="'UTC'"
+            :to-tz="'Asia/Tokyo'"
+          />
 
-      <main-component
-        :from-tz="'Asia/Tokyo'"
-        :to-tz="'UTC'"
-      />
+          <single-line-component
+            :from-tz="'Asia/Tokyo'"
+            :to-tz="'UTC'"
+          />
+        </v-tab-item>
+        <v-tab-item>
+          <multi-line-component
+            :from-tz="'UTC'"
+            :to-tz="'Asia/Tokyo'"
+          />
+
+          <multi-line-component
+            :from-tz="'Asia/Tokyo'"
+            :to-tz="'UTC'"
+          />
+        </v-tab-item>
+      </v-tabs-items>
     </v-col>
 
     <v-col cols="12" md="4">
@@ -36,19 +64,22 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import MainComponent from '@/components/MainComponent.vue'
+import SingleLineComponent from '~/components/SingleLineComponent.vue'
+import MultiLineComponent from '~/components/MultiLineComponent.vue'
 import TheDescription from '@/components/TheDescription.vue'
 
 export default Vue.extend({
   name: 'IndexPage',
   components: {
-    MainComponent,
+    SingleLineComponent,
+    MultiLineComponent,
     TheDescription
   },
   data () {
     return {
       showOverlay: false,
-      animation: false
+      animation: false,
+      activeTab: 0
     }
   },
   mounted () {
