@@ -19,7 +19,6 @@
           <single-line-component
             :from-tz="'UTC'"
             :to-tz="'Asia/Tokyo'"
-            class="mb-4"
           />
 
           <single-line-component
@@ -28,11 +27,15 @@
           />
         </v-tab-item>
         <v-tab-item>
-          <v-card flat>
-            <v-card-text>
-              To be implemented.
-            </v-card-text>
-          </v-card>
+          <multi-line-component
+            :from-tz="'UTC'"
+            :to-tz="'Asia/Tokyo'"
+          />
+
+          <multi-line-component
+            :from-tz="'Asia/Tokyo'"
+            :to-tz="'UTC'"
+          />
         </v-tab-item>
       </v-tabs-items>
     </v-col>
@@ -62,12 +65,14 @@
 <script lang="ts">
 import Vue from 'vue'
 import SingleLineComponent from '~/components/SingleLineComponent.vue'
+import MultiLineComponent from '~/components/MultiLineComponent.vue'
 import TheDescription from '@/components/TheDescription.vue'
 
 export default Vue.extend({
   name: 'IndexPage',
   components: {
     SingleLineComponent,
+    MultiLineComponent,
     TheDescription
   },
   data () {

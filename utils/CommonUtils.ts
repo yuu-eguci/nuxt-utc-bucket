@@ -25,3 +25,25 @@ export function convertDatetime (value: string, fromTz: string, toTz: string): s
     return (err as any).message
   }
 }
+
+/**
+ * 複数行のテキスト内の各日時を、元のタイムゾーンから目的のタイムゾーンに変換する関数。
+ * 空欄の行はそのまま出力される。
+ *
+ * @param {string} value - 変換対象の複数行の日時テキスト。
+ * @param {string} fromTz - 元のタイムゾーン。IANAタイムゾーンデータベースの名前で指定する。 (例: 'UTC', 'Asia/Tokyo')
+ * @param {string} toTz - 目的のタイムゾーン。IANAタイムゾーンデータベースの名前で指定する。 (例: 'UTC', 'Asia/Tokyo')
+ *
+ * @returns {string} - 目的のタイムゾーンに変換された複数行の日時テキスト。空欄の行はそのまま出力される。
+ */
+export function convertDatetimeLines (value: string, fromTz: string, toTz: string): string {
+  return value
+    .split('\n')
+    .map((line) => {
+      if (line.trim() === '') {
+        return line
+      }
+      return convertDatetime(line, fromTz, toTz)
+    })
+    .join('\n')
+}
