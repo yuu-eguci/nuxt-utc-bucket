@@ -43,7 +43,7 @@ import Vue from 'vue'
 import { convertDatetime } from '@/utils/CommonUtils'
 
 export default Vue.extend({
-  name: 'MainComponent',
+  name: 'SingleLineComponent',
   props: {
     fromTz: {
       type: String,

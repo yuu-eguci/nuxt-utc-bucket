@@ -16,13 +16,13 @@
       <v-tabs-items v-model="activeTab">
         <v-tab-item>
           <!-- XXX: ここに padding を設ける方法がよくわからない。 -->
-          <main-component
+          <single-line-component
             :from-tz="'UTC'"
             :to-tz="'Asia/Tokyo'"
             class="mb-4"
           />
 
-          <main-component
+          <single-line-component
             :from-tz="'Asia/Tokyo'"
             :to-tz="'UTC'"
           />
@@ -61,13 +61,13 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import MainComponent from '@/components/MainComponent.vue'
+import SingleLineComponent from '~/components/SingleLineComponent.vue'
 import TheDescription from '@/components/TheDescription.vue'
 
 export default Vue.extend({
   name: 'IndexPage',
   components: {
-    MainComponent,
+    SingleLineComponent,
     TheDescription
   },
   data () {
