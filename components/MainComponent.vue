@@ -2,7 +2,6 @@
   <div>
     <v-text-field
       v-model="inputText"
-      :counter="20"
       :label="fromTz"
       outlined
       style="font-size: 1.3rem; padding: 0.5rem 0;"
