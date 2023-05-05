@@ -1,15 +1,40 @@
 <template>
   <v-row justify="center" align="center">
     <v-col cols="12" md="8">
-      <main-component
-        :from-tz="'UTC'"
-        :to-tz="'Asia/Tokyo'"
-      />
+      <v-tabs
+        v-model="activeTab"
+        fixed-tabs
+        dark
+      >
+        <v-tab>
+          {{ $t('indexPage.tabNameSingle') }}
+        </v-tab>
+        <v-tab>
+          {{ $t('indexPage.tabNameMultiple') }}
+        </v-tab>
+      </v-tabs>
+      <v-tabs-items v-model="activeTab">
+        <v-tab-item>
+          <!-- XXX: ここに padding を設ける方法がよくわからない。 -->
+          <main-component
+            :from-tz="'UTC'"
+            :to-tz="'Asia/Tokyo'"
+            class="mb-4"
+          />
 
-      <main-component
-        :from-tz="'Asia/Tokyo'"
-        :to-tz="'UTC'"
-      />
+          <main-component
+            :from-tz="'Asia/Tokyo'"
+            :to-tz="'UTC'"
+          />
+        </v-tab-item>
+        <v-tab-item>
+          <v-card flat>
+            <v-card-text>
+              To be implemented.
+            </v-card-text>
+          </v-card>
+        </v-tab-item>
+      </v-tabs-items>
     </v-col>
 
     <v-col cols="12" md="4">
@@ -48,7 +73,8 @@ export default Vue.extend({
   data () {
     return {
       showOverlay: false,
-      animation: false
+      animation: false,
+      activeTab: 0
     }
   },
   mounted () {
