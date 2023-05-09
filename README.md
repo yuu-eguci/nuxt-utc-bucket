@@ -2,6 +2,12 @@
 
 ✌🏽✌🏽 In this repository, I tried to study Nuxt.js 2 + TypeScript + Object Style + Vuetify + GitHub Pages
 
+## Demo video
+
+At video/(2023-05-08)nuxt-utc-bucket.mp4
+
+https://user-images.githubusercontent.com/28250432/236964716-007c5374-6dc5-414e-b5de-fb42fcf92472.mp4
+
 ## Build Setup
 
 ```bash
