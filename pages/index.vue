@@ -19,6 +19,7 @@
           <single-line-component
             :from-tz="'UTC'"
             :to-tz="'Asia/Tokyo'"
+            :autofocus="true"
           />
 
           <single-line-component
