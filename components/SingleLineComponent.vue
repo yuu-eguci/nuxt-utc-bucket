@@ -3,6 +3,7 @@
     <v-text-field
       v-model="inputText"
       :label="fromTz"
+      :autofocus="autofocus"
       outlined
       style="font-size: 1.3rem; padding: 0.5rem 0;"
     />
@@ -52,6 +53,10 @@ export default Vue.extend({
     toTz: {
       type: String,
       required: true
+    },
+    autofocus: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
