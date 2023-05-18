@@ -22,7 +22,11 @@ export function convertDatetime (value: string, fromTz: string, toTz: string): s
     // toTz への変換
     return datetime.tz(toTz).format()
   } catch (err: unknown) {
-    return (err as any).message
+    if (err instanceof Error) {
+      return err.message
+    } else {
+      throw err
+    }
   }
 }
 
