@@ -1,28 +1,51 @@
-import * as dayjs from 'dayjs'
+import dayjs, { extend } from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import timezone from 'dayjs/plugin/timezone'
 
-dayjs.extend(utc)
-dayjs.extend(timezone)
+extend(utc)
+extend(timezone)
 
 /**
- * 指定された日時を、元のタイムゾーンから目的のタイムゾーンに変換する関数。
+ * 指定されたタイムゾーンから別のタイムゾーンに日時を変換します。
  *
- * @param {string} value - 変換対象の日時文字列。 (例: '2023-04-29T00:00:00Z')
- * @param {string} fromTz - 元のタイムゾーン。IANAタイムゾーンデータベースの名前で指定する。 (例: 'UTC', 'Asia/Tokyo')
- * @param {string} toTz - 目的のタイムゾーン。IANAタイムゾーンデータベースの名前で指定する。 (例: 'UTC', 'Asia/Tokyo')
- *
- * @returns {string} - 目的のタイムゾーンに変換された日時文字列。 (例: '2023-04-29T09:00:00+09:00')
- * @throws {Error} - 変換が失敗した場合、エラーメッセージが返される。
+ * @param {string} value - 変換する日時の文字列 (例: '2023-12-31 23:00:00')
+ * @param {string} fromTz - 入力された日時の元のタイムゾーン (例: 'UTC', 'Asia/Tokyo')
+ * @param {string} toTz - 出力される日時のタイムゾーン (例: 'UTC', 'Asia/Tokyo')
+ * @returns {string} 変換された日時の文字列 (ISO 8601 形式)。
+ *                   入力のタイムゾーンと異なるオフセットを持っている場合はエラーメッセージを返します。
  */
 export function convertDatetime (value: string, fromTz: string, toTz: string): string {
   try {
-    // value を UTC として解釈し、fromTz のタイムゾーンに変換
-    const datetime = (dayjs as any).utc(value).tz(fromTz)
-    // toTz への変換
+    // fromTz のタイムゾーンで日時オブジェクトを作成
+    let datetime = dayjs.tz(value, fromTz)
+
+    // UTC offset (+xx:xx) or Z を持っているかチェック
+    const hasTimezone = /[+-][0-9]{2}:[0-9]{2}$|Z$/i.test(value)
+
+    if (hasTimezone) {
+      // 入力からのUTCオフセットを取得
+      const valueTzOffset = value.endsWith('Z') ? '+00:00' : value.slice(-6)
+
+      // fromTzのUTCオフセットを取得
+      const fromTzOffset = dayjs().tz(fromTz).format('Z')
+
+      // 入力のタイムゾーンが指定されたものと一致しているか確認
+      if (valueTzOffset !== fromTzOffset) {
+        return `Input timezone does not match ${fromTz}`
+      }
+
+      // value がはじめから持つタイムゾーン付きで日時オブジェクトを作成
+      datetime = dayjs(value).tz()
+    }
+
+    // toTzへの変換
     return datetime.tz(toTz).format()
   } catch (err: unknown) {
-    return (err as any).message
+    if (err instanceof Error) {
+      return err.message
+    } else {
+      throw err
+    }
   }
 }
 

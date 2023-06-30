@@ -65,8 +65,8 @@ export default Vue.extend({
   },
   computed: {
     inputText: {
-      get () {
-        return (this as any).innerInputText
+      get (): string {
+        return this.innerInputText
       },
       set (value: string) {
         this.innerInputText = value
