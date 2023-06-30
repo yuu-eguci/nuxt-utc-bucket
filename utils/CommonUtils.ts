@@ -1,9 +1,9 @@
-import dayjs from 'dayjs'
+import dayjs, { extend } from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import timezone from 'dayjs/plugin/timezone'
 
-dayjs.extend(utc)
-dayjs.extend(timezone)
+extend(utc)
+extend(timezone)
 
 /**
  * 指定されたタイムゾーンから別のタイムゾーンに日時を変換します。
