@@ -82,17 +82,23 @@ export default Vue.extend({
     }
   },
   methods: {
+    // NOTE: MultiLineComponent と重複しているのだが、これを共通化するには
+    //       Mixin, Composition API などを使う必要があるっぽくて、どれも今回は不可。
     async copyConvertedText () {
+      if (this.convertedText === '') {
+        return
+      }
       try {
         this.$debug(`Copy text: ${this.convertedText}`)
         await navigator.clipboard.writeText(this.convertedText)
-        this.copied = true
-        setTimeout(() => {
-          this.copied = false
-        }, 3000)
       } catch (err) {
         this.$debug(`Failed to copy text: ${this.convertedText}`)
+        throw err
       }
+      this.copied = true
+      setTimeout(() => {
+        this.copied = false
+      }, 3000)
     }
   }
 })
