@@ -44,5 +44,9 @@
     "jest-environment-jsdom": "^29.1.2",
     "ts-jest": "^29.0.3",
     "vue-jest": "^3.0.4"
+  },
+  "volta": {
+    "node": "18.18.0",
+    "yarn": "1.22.19"
   }
 }
