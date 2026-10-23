@@ -90,3 +90,6 @@ sw.*
 *.swp
 
 .vscode
+
+# Local handoff notes (never commit)
+docs/iona-kest.md
