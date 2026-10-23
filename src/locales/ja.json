@@ -1,0 +1,11 @@
+{
+  "indexPage": {
+    "description": "UTC を打てば JST にするし、 JST を打てば UTC にするぞ。",
+    "descriptionMultiple": "複数行のほうでは、空欄の行はそのまま空欄で出力するよ。あと、5行以降は省略してるけど、コピーはできるよ。",
+    "copied": "コピーしたよ",
+    "copyFailed": "コピーできなかったよ",
+    "showBucket": "バケツをまた開ける",
+    "tabNameSingle": "一行",
+    "tabNameMultiple": "複数行"
+  }
+}
